@@ -72,7 +72,7 @@ a lunbo-jquery
 				background-color: #fff;
 			}
 			.colors{
-				background-color:darkred ;
+				background-color:red ;
 				}
 			
 		</style>
@@ -139,6 +139,14 @@ a lunbo-jquery
 					 	
 					 });
 					 
+					 
+					 
+					 var t=i;
+					 if(t>7){
+					 	
+					 	t=0;
+					 }
+					 $('a').eq(t).addClass('colors').siblings().removeClass('colors');
 				}
 			
 				$('.main').hover(function(){
@@ -188,6 +196,7 @@ a lunbo-jquery
 					 		
 					 	}
 					 });
+				
 					}); 
 			
 			
