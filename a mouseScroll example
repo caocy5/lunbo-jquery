@@ -1,0 +1,201 @@
+# a mouseScroll example
+# mousewheel
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			function isDown(event) {
+				var down = true;
+				//判断滚轮向下
+				if (event.originalEvent.wheelDelta < 0 || event.originalEvent.detail > 0) {
+					down = true;
+
+				}
+				//判断滚轮向上
+				if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+					down = false;
+
+				}
+				return down;
+
+			}
+
+			$(document).ready(function() {
+				//获取窗口高度
+				var clienth = $(window).height();
+				var len = $('.box div').length;
+				$('.main').height(clienth);
+				$('.box').height(clienth * len);
+				$('.box div').height(clienth);
+				var i = 0;
+				//				var scrollIndex=0;
+				var flag = true;
+				
+				 
+				$(document).on('mousewheel DOMMouseScroll', function(event) {
+					if (flag){
+					
+						if (isDown(event)){
+							i++;
+
+							if (i>len - 1) {
+
+								i = len - 1;
+
+							}
+							$('.box').stop(true, true).animate({
+								top: -clienth * i
+							}, 1000, function() {
+								flag = true;
+
+							})
+						var t=i;
+				    $('#control a').eq(t).addClass('colors').siblings().removeClass('colors');
+
+						}
+						flag = false;
+						if(!isDown(event)){
+							i--;
+							if(i<0){
+								i=0;
+							}
+							$('.box').stop(true, true).animate({
+								top: -clienth * i
+							}, 500, function() {
+								flag = true;
+
+							})
+							  var t=i;				        
+				         $('#control a').eq(t).addClass('colors').siblings().removeClass('colors');
+							
+						}
+					}
+                           
+				})
+				
+				 $('#control a').click(function(){
+           $(this).addClass('colors').siblings().removeClass('colors');
+                      i=$(this).index(); 		   
+               		$('.box').stop(true, true).animate({
+								top: -clienth * i
+							}, 500, function() {
+								flag = true;
+
+							})	   
+				}); 
+
+				 
+
+			})
+			
+			
+	
+							
+		
+			
+		</script>
+		<style type="text/css">
+		body{margin: 0;}
+			.main {
+				width: 100%;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.box {
+				position: absolute;
+				width: 100%;
+			}
+			
+			.box div:nth-child(1) {
+				background: red;
+			}
+			
+			.box div:nth-child(2) {
+				background: orange;
+			}
+			
+			.box div:nth-child(3) {
+				background: yellow;
+			}
+			
+			.box div:nth-child(4) {
+				background: green;
+			}
+			
+			.box div:nth-child(5) {
+				background: cyan;
+			}
+			
+			.box div:nth-child(6) {
+				background: blue;
+			}
+			
+			.box div:nth-child(7) {
+				background: purple;
+			}
+			#control {
+			position: absolute;
+			z-index: 2;
+			right: 20px;
+			width: 24px;
+			height: 24px;
+			right: 2%;
+			top:30%;
+			margin-left: -100px;
+			text-align: center;
+			line-height: 30px;
+			border-radius: 15px;
+			
+		    }
+		
+		   #control  a {
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			background-color: #fff;
+		   }
+		   #control .colors{
+			background-color:red ;
+			}
+			ul{
+			list-style:none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="box">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+
+			</div>
+			
+				<div id='control'>
+			<a href="javascript:void(0);" class="colors"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			
+		      </div>
+		
+		</div>
+		</div>
+	</body>
+
+</html>
