@@ -7,14 +7,10 @@ a lunbo-jquery
 	<head>
 		<meta charset="UTF-8">
 
-<title></title> 
-  <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<style type="text/css">
-         .main { 
-	width: 590px; 
-	height: 340px; 
-	overflow: hidden; 
-	position: relative; 
+       <title></title> 
+      <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+       <style type="text/css">
+       .main { width: 590px; height: 340px; overflow: hidden; position: relative; 
         }
 
 		.box {
@@ -66,14 +62,14 @@ a lunbo-jquery
 			background-color: rgba(0, 0, 0, 0.3);
 		}
 		
-		a {
+		#control a {
 			display: inline-block;
 			width: 16px;
 			height: 16px;
 			border-radius: 50%;
 			background-color: #fff;
 		}
-		.colors{
+		#control .colors{
 			background-color:red ;
 			}
 		
@@ -148,7 +144,7 @@ a lunbo-jquery
 				 	
 				 	t=0;
 				 }
-				 $('a').eq(t).addClass('colors').siblings().removeClass('colors');
+				 $('#control a').eq(t).addClass('colors').siblings().removeClass('colors');
 			}
 		
 			$('.main').hover(function(){
@@ -177,9 +173,7 @@ a lunbo-jquery
 		    });
 				
 		
-			 $('a').click(function(){
-
-
+			 $('#control a').click(function(){
            $(this).addClass('colors').siblings().removeClass('colors') 
 	        i=$(this).index()-1; 
 	           move();
