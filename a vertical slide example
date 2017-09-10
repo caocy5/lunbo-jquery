@@ -1,0 +1,180 @@
+# a vertical slide example
+#screen
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		  <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			
+
+			$(document).ready(function() {
+				//获取窗口高度
+				var clienth = $(window).innerHeight();
+				var len = $('.box div').length;
+				$('.main').height(clienth);
+				$('.box').height(clienth * len);
+				$('.box div').height(clienth);
+				var i = 0;
+				//				var scrollIndex=0;
+				var flag = true;
+				
+				 time=setInterval(tiao,3000);  //实现计时跳转
+				
+				
+				function tiao(){     //实现计时跳转函数
+				
+				i++;
+				if(i>=7){
+					i=0;					
+				}
+				if(i<0){
+					i=7;
+				$(".box").css('top','-clienth * i');	
+				}
+				
+				$(".box").stop().animate({
+				 top: -clienth * i
+				 },500, function(){
+				 	if(i==7){
+				 		$(".box").css('left','0');
+				 		
+				 	}
+				 	
+				 });
+				 
+				  var t=i;
+				 if(t>=7){
+				 	
+				 	t=0;
+				 }
+				 $('#control a').eq(t).addClass('colors').siblings().removeClass('colors');
+				 }
+				 
+				 	    $('.main').hover(function(){
+			
+					clearInterval(time)
+			},function(){
+				time=setInterval(tiao,3000);
+		    });
+			                         //实现计时跳转函数结束
+						
+			 $('#control a').click(function(){
+
+
+           $(this).addClass('colors').siblings().removeClass('colors') 
+	        i=$(this).index()-1; 
+	           tiao();
+			
+				}); 
+				
+			})
+			
+	
+							
+		
+			
+		</script>
+		<style type="text/css">
+		body{margin: 0;}
+			.main {
+				width: 100%;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.box {
+				position: absolute;
+				width: 100%;
+			}
+			
+			.box div:nth-child(1) {
+				background: red;
+			}
+			
+			.box div:nth-child(2) {
+				background: orange;
+			}
+			
+			.box div:nth-child(3) {
+				background: yellow;
+			}
+			
+			.box div:nth-child(4) {
+				background: green;
+			}
+			
+			.box div:nth-child(5) {
+				background: cyan;
+			}
+			
+			.box div:nth-child(6) {
+				background: blue;
+			}
+			
+			.box div:nth-child(7) {
+				background: purple;
+			}
+			#control {
+			position: absolute;
+			z-index: 2;
+			right: 20px;
+			width: 24px;
+			height: 24px;
+			right: 2%;
+			top:30%;
+			margin-left: -100px;
+			text-align: center;
+			line-height: 30px;
+			border-radius: 15px;
+			
+		    }
+		
+		    #control a {
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			background-color: #fff;
+		   }
+		   #control .colors{
+			background-color:red ;
+			}
+			ul{
+			list-style:none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="box">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+
+			</div>
+			
+				<div id='control'>
+			<a href="javascript:void(0);" class="colors"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			<a href="javascript:void(0);"></a>
+			
+		      </div>
+		
+		</div>
+		</div>
+	</body>
+
+</html>
